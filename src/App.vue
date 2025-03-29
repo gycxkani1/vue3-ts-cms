@@ -1,7 +1,17 @@
 <template>
+  <div>
+    <!-- ElementPlus -->
+    <el-button>Default</el-button>
+    <el-button type="primary">Primary</el-button>
+    <el-button type="success">Success</el-button>
+    <el-icon :size="20" color="#409efc">
+      <Edit />
+    </el-icon>
+    <el-icon><UserFilled /></el-icon>
+  </div>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Login</router-link> |
+    <router-link to="/main">Main</router-link>
   </nav>
   <router-view />
 </template>
