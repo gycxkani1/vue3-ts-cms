@@ -49,7 +49,7 @@ module.exports = defineConfig({
     //       changeOrigin: true
     //     }
     //   }
-    // }
+    // },
 
     // 2. 为webpack添加插件
     plugins: [

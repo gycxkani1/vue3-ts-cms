@@ -19,3 +19,8 @@ hyRequest.request({
   method: "GET",
   showLoading: true
 });
+
+// 测试环境变量
+console.log(process.env.NODE_ENV);
+console.log(process.env.VUE_APP_BASE_URL);
+console.log(process.env.VUE_APP_ENV);
