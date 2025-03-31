@@ -38,18 +38,18 @@ module.exports = defineConfig({
     // }
 
     // 开发环境配置proxy代理
-    // devServer: {
-    //   proxy: {
-    //     "^/api": {
-    //       // target: 'http://152.136.185.210:4000',
-    //       target: "http://codercba.com:5000",
-    //       pathRewrite: {
-    //         "^/api": ""
-    //       },
-    //       changeOrigin: true
-    //     }
-    //   }
-    // },
+    devServer: {
+      proxy: {
+        "^/api": {
+          // target: 'http://152.136.185.210:4000',
+          target: "http://codercba.com:5000",
+          pathRewrite: {
+            "^/api": ""
+          },
+          changeOrigin: true
+        }
+      }
+    },
 
     // 2. 为webpack添加插件
     plugins: [

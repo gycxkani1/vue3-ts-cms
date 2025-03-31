@@ -4,6 +4,7 @@
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
+    "importHelpers": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,6 +20,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "components/*": [
+        "src/components/*"
       ]
     },
     "lib": [
