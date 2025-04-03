@@ -51,6 +51,18 @@ module.exports = defineConfig({
       }
     },
 
+    // devServer: {
+    //   proxy: {
+    //     "/api": {
+    //       target: "http://codercba.com:5000",
+    //       changeOrigin: true,
+    //       pathRewrite: {
+    //         "^/api": ""
+    //       }
+    //     }
+    //   }
+    // },
+
     // 2. 为webpack添加插件
     plugins: [
       AutoImport({

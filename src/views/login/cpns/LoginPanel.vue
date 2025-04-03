@@ -1,8 +1,8 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" stretch v_model="currentTab">
+      <el-tab-pane name="account">
         <template #label>
           <span>
             <el-icon><UserFilled /></el-icon> 账号登录
@@ -11,7 +11,7 @@
         <!-- todo add login form 1-->
         <login-account ref="accountRef"></login-account>
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span>
             <el-icon><Iphone /></el-icon> 手机登录
@@ -34,16 +34,28 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import LoginAccount from "./LoginAccount.vue";
 import LoginPhone from "./LoginPhone.vue";
+import localCache from "@/utils/cache";
 
+const currentTab = ref("account");
 const isKeepPassword = ref(true);
-
 const accountRef = ref<InstanceType<typeof LoginAccount>>();
+
+onMounted(() => {
+  // 回显用户名和密码（默认回显：coderwhy  123456）
+  const name = localCache.getCache("name") || "coderwhy";
+  const password = localCache.getCache("password") || "123456";
+  accountRef.value?.setFormFields(name, password);
+});
 const handleLoginClick = () => {
-  console.log(isKeepPassword.value, "单击登录");
-  accountRef.value?.loginAction();
+  // console.log(isKeepPassword.value, "单击登录");
+  if (currentTab.value === "account") {
+    accountRef.value?.loginAction(isKeepPassword.value);
+  } else {
+    // todo 手机登录
+  }
 };
 </script>
 
