@@ -18,5 +18,11 @@ module.exports = {
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
     "vue/multi-word-component-names": ["off", { ignores: [] }],
     "@typescript-eslint/no-explicit-any": "off"
+  },
+  globals: {
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly"
   }
 };

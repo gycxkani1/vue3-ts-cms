@@ -18,14 +18,14 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.mount("#app");
 
 // 测试hyRequest中显示加载进度的功能
-import hyRequest from "./service";
-hyRequest.request({
-  url: "/get",
-  method: "GET",
-  showLoading: true
-});
+// import hyRequest from "./service";
+// hyRequest.request({
+//   url: "/get",
+//   method: "GET",
+//   showLoading: true
+// });
 
 // 测试环境变量
-console.log(process.env.NODE_ENV);
-console.log(process.env.VUE_APP_BASE_URL);
-console.log(process.env.VUE_APP_ENV);
+// console.log(process.env.NODE_ENV);
+// console.log(process.env.VUE_APP_BASE_URL);
+// console.log(process.env.VUE_APP_ENV);

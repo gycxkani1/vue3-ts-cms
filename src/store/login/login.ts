@@ -1,5 +1,12 @@
-import { accountLoginRequest } from "@/service/login/login";
+import {
+  accountLoginRequest,
+  requestUserInfoById,
+  requestUserMenusByRoleId
+} from "@/service/login/login";
 import localCache from "@/utils/cache";
+import router from "@/router";
+import { mapMenusToRoutes } from "@/utils/map-menus";
+
 import { Module } from "vuex";
 import { IRootState } from "../types";
 import { ILoginState } from "./types";
@@ -20,11 +27,20 @@ const loginModule: Module<ILoginState, IRootState> = {
   mutations: {
     changeToken(state, token: string) {
       state.token = token;
+    },
+    changeUserInfo(state, userInfo: any) {
+      state.userInfo = userInfo;
+    },
+    changeUserMenus(state, userMenus: any) {
+      // 保存用户菜单
+      state.userMenus = userMenus;
+      // 2.将userMenus 映射为 routes
+      // const routes = mapMenusToRoutes(userMenus);
+      // 3.动态注册路由
+      // routes.forEach((route) => {
+      //   router.addRoute("main", route);
+      // });
     }
-    // changeUserInfo(state, userInfo: IAccount) {
-    //   state.userInfo = userInfo;
-    //   localCache.setCache("userInfo", userInfo);
-    // }
   },
   actions: {
     async accountLoginAction({ commit, dispatch }, payload: IAccount) {
@@ -34,9 +50,24 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 将结果存起来
       commit("changeToken", token);
       localCache.setCache("token", token);
-      // commit("changeUserInfo", id);
-      // console.log("登录成功", loginResult);
-      // return id;
+      // 发送初始化的请求(完整的role/department)
+      // dispatch('getInitialDataAction', null, { root: true })
+
+      // 2.请求用户信息
+      const userInfoResult = await requestUserInfoById(id);
+      const userInfo = userInfoResult.data;
+      console.log(userInfo);
+      commit("changeUserInfo", userInfo);
+      localCache.setCache("userInfo", userInfo);
+
+      // 3.请求用户菜单
+      const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id);
+      const userMenus = userMenusResult.data;
+      console.log(userMenus);
+      commit("changeUserMenus", userMenus);
+      localCache.setCache("userMenus", userMenus);
+      // 4.跳到首页
+      router.push("/main");
     }
   }
 };

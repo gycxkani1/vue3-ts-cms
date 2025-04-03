@@ -1,4 +1,5 @@
 import HYRequest from "./request"; // 1. 导入HYRequest类
+import localCache from "@/utils/cache"; // 1. 导入localCache类
 import { BASE_URL, TIME_OUT } from "./request/config"; // 2. 导入基本配置
 // 3. 创建HYRequest类的实例hyRequest
 const hyRequest = new HYRequest({
@@ -7,8 +8,8 @@ const hyRequest = new HYRequest({
   // 为单个实例添加拦截器
   interceptors: {
     requestInterceptor: (config) => {
-      const token = "";
-      if (token) {
+      const token = localCache.getCache("token");
+      if (token && config.headers) {
         // 例子：统一为header添加Authorization属性
         config.headers!.Authorization = `Bearer ${token}`;
       }
