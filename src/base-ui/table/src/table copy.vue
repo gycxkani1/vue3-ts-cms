@@ -29,7 +29,13 @@
         width="80"
       ></el-table-column>
       <template v-for="propItem in propList" :key="propItem.prop">
-        <el-table-column v-bind="propItem" align="center" show-overflow-tooltip>
+        <el-table-column
+          :prop="propItem.prop"
+          :label="propItem.label"
+          :min-width="propItem.minWidth"
+          align="center"
+          show-overflow-tooltip
+        >
           <template #default="scope">
             <slot :name="propItem.slotName" :row="scope.row">
               {{ scope.row[propItem.prop] }}
@@ -56,13 +62,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from "vue";
+
+interface PropItem {
+  prop: string;
+  label: string;
+  minWidth?: string | number;
+  slotName?: string;
+}
 
 export default defineComponent({
   props: {
     title: {
       type: String,
-      default: ''
+      default: ""
     },
     listData: {
       type: Array,
@@ -73,7 +86,7 @@ export default defineComponent({
       default: 0
     },
     propList: {
-      type: Array,
+      type: Array as PropType<PropItem[]>,
       required: true
     },
     showIndexColumn: {
@@ -97,27 +110,27 @@ export default defineComponent({
       default: true
     }
   },
-  emits: ['selectionChange', 'update:page'],
+  emits: ["selectionChange", "update:page"],
   setup(props, { emit }) {
     const handleSelectionChange = (value: any) => {
-      emit('selectionChange', value)
-    }
+      emit("selectionChange", value);
+    };
 
     const handleCurrentChange = (currentPage: number) => {
-      emit('update:page', { ...props.page, currentPage })
-    }
+      emit("update:page", { ...props.page, currentPage });
+    };
 
     const handleSizeChange = (pageSize: number) => {
-      emit('update:page', { ...props.page, pageSize })
-    }
+      emit("update:page", { ...props.page, pageSize });
+    };
 
     return {
       handleSelectionChange,
       handleCurrentChange,
       handleSizeChange
-    }
+    };
   }
-})
+});
 </script>
 
 <style scoped lang="less">

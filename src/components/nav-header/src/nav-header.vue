@@ -4,8 +4,8 @@
       <component :is="isFold ? 'expand' : 'fold'"></component>
     </el-icon>
     <div class="content">
-      <!-- <hy-breadcrumb :breadcrumbs="breadcrumbs" /> -->
-      <div>面包屑</div>
+      <hy-breadcrumb :breadcrumbs="breadcrumbs" />
+      <!-- <div>面包屑</div> -->
       <user-info />
     </div>
   </div>
@@ -14,23 +14,23 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import UserInfo from "./user-info.vue";
-// import { useStore } from "vuex";
-// import { useRoute } from "vue-router";
-// import { pathMapBreadcrumbs } from "@/utils/map-menus";
-// import HyBreadcrumb from "@/base-ui/breadcrumb";
-// import type { IStoreType } from "@/store/types";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { pathMapBreadcrumbs } from "@/utils/map-menus";
+import HyBreadcrumb from "@/base-ui/breadcrumb";
+import type { IStoreType } from "@/store/types";
 // 1.定义一个isFold变量
 const isFold = ref(false);
 
-// const store = useStore<IStoreType>();
-// const route = useRoute();
+const store = useStore<IStoreType>();
+const route = useRoute();
 // 获取面包屑数组
-// const breadcrumbs = computed(() => {
-//   const userMenus = store.state.login.userMenus;
-//   const currentPath = route.path;
-//   // 根据菜单和当前路由来拿到面包屑数组数据
-//   return pathMapBreadcrumbs(userMenus, currentPath);
-// });
+const breadcrumbs = computed(() => {
+  const userMenus = store.state.login.userMenus;
+  const currentPath = route.path;
+  // 根据菜单和当前路由来拿到面包屑数组数据
+  return pathMapBreadcrumbs(userMenus, currentPath);
+});
 
 // 2.注册需要触发的emit事件
 const emit = defineEmits(["foldChange"]);

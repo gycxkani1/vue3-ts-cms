@@ -63,19 +63,19 @@
 
 <script lang="ts" setup>
 interface Props {
-  title?: string
-  listData: Array<any>
-  listCount?: number
-  propList: Array<any>
-  page?: { currentPage: number; pageSize: number }
-  childrenProps?: any
-  showIndexColumn?: boolean
-  showSelectColumn?: boolean
-  showFooter?: boolean
+  title?: string;
+  listData: Array<any>;
+  listCount?: number;
+  propList: Array<any>;
+  page?: { currentPage: number; pageSize: number };
+  childrenProps?: any;
+  showIndexColumn?: boolean;
+  showSelectColumn?: boolean;
+  showFooter?: boolean;
 }
 // 1.定义属性并且带上默认值
 const props = withDefaults(defineProps<Props>(), {
-  title: '',
+  title: "",
   listData: () => [],
   listCount: 0,
   propList: () => [],
@@ -84,28 +84,28 @@ const props = withDefaults(defineProps<Props>(), {
   showIndexColumn: true,
   showSelectColumn: true,
   showFooter: true
-})
+});
 
 // 2.定义了输入框的输入事件
 const emit = defineEmits<{
-  (e: 'selectionChange', value: any): void
-  (e: 'update:page', value: any): void
-}>()
+  (e: "selectionChange", value: any): void;
+  (e: "update:page", value: any): void;
+}>();
 const handleSelectionChange = (value: any) => {
-  emit('selectionChange', value)
-}
+  emit("selectionChange", value);
+};
 const handleCurrentChange = (currentPage: number) => {
-  emit('update:page', { ...props.page, currentPage })
-}
+  emit("update:page", { ...props.page, currentPage });
+};
 const handleSizeChange = (pageSize: number) => {
-  emit('update:page', { ...props.page, pageSize })
-}
+  emit("update:page", { ...props.page, pageSize });
+};
 // 3.对外暴露两个属性
 defineExpose({
   handleSelectionChange,
   handleCurrentChange,
   handleSizeChange
-})
+});
 </script>
 
 <style scoped lang="less">
