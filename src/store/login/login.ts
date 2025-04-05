@@ -32,14 +32,14 @@ const loginModule: Module<ILoginState, IRootState> = {
       state.userInfo = userInfo;
     },
     changeUserMenus(state, userMenus: any) {
-      // 保存用户菜单
+      // 1. 保存用户菜单
       state.userMenus = userMenus;
       // 2.将userMenus 映射为 routes
-      // const routes = mapMenusToRoutes(userMenus);
+      const routes = mapMenusToRoutes(userMenus);
       // 3.动态注册路由
-      // routes.forEach((route) => {
-      //   router.addRoute("main", route);
-      // });
+      routes.forEach((route) => {
+        router.addRoute("main", route);
+      });
     }
   },
   actions: {
@@ -68,6 +68,23 @@ const loginModule: Module<ILoginState, IRootState> = {
       localCache.setCache("userMenus", userMenus);
       // 4.跳到首页
       router.push("/main");
+    },
+    // 该action函数用于初始化Vuex中的数据，可派发login/loadLocalLogin来触发该函数的回调
+    loadLocalLogin({ commit, dispatch }) {
+      const token = localCache.getCache("token");
+      if (token) {
+        commit("changeToken", token);
+        // 发送初始化的请求(完整的role/department)
+        // dispatch('getInitialDataAction', null, { root: true })
+      }
+      const userInfo = localCache.getCache("userInfo");
+      if (userInfo) {
+        commit("changeUserInfo", userInfo);
+      }
+      const userMenus = localCache.getCache("userMenus");
+      if (userMenus) {
+        commit("changeUserMenus", userMenus);
+      }
     }
   }
 };

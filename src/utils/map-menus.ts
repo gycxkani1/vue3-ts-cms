@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import type { IBreadcrumb } from "@/base-ui/breadcrumb";
+// import type { IBreadcrumb } from "@/base-ui/breadcrumb";
 
 export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = [];
@@ -29,27 +29,27 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
 }
 
 // 将路径转成面包屑
-export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
-  const breadcrumbs: IBreadcrumb[] = [];
-  pathMapToMenu(userMenus, currentPath, breadcrumbs);
-  return breadcrumbs;
-}
+// export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+//   const breadcrumbs: IBreadcrumb[] = [];
+//   pathMapToMenu(userMenus, currentPath, breadcrumbs);
+//   return breadcrumbs;
+// }
 
-export function pathMapToMenu(
-  userMenus: any[],
-  currentPath: string,
-  breadcrumbs?: IBreadcrumb[]
-): any {
-  for (const menu of userMenus) {
-    if (menu.type === 1) {
-      const findMenu = pathMapToMenu(menu.children ?? [], currentPath);
-      if (findMenu) {
-        breadcrumbs?.push({ name: menu.name });
-        breadcrumbs?.push({ name: findMenu.name });
-        return findMenu;
-      }
-    } else if (menu.type === 2 && menu.url === currentPath) {
-      return menu;
-    }
-  }
-}
+// export function pathMapToMenu(
+//   userMenus: any[],
+//   currentPath: string,
+//   breadcrumbs?: IBreadcrumb[]
+// ): any {
+//   for (const menu of userMenus) {
+//     if (menu.type === 1) {
+//       const findMenu = pathMapToMenu(menu.children ?? [], currentPath);
+//       if (findMenu) {
+//         breadcrumbs?.push({ name: menu.name });
+//         breadcrumbs?.push({ name: findMenu.name });
+//         return findMenu;
+//       }
+//     } else if (menu.type === 2 && menu.url === currentPath) {
+//       return menu;
+//     }
+//   }
+// }
