@@ -42,6 +42,7 @@ declare module '@vue/runtime-core' {
     NavMenu: typeof import('./src/components/nav-menu/src/nav-menu.vue')['default']
     NavMenuV1: typeof import('./src/components/nav-menu/src/nav-menu-v1.vue')['default']
     PageContent: typeof import('./src/components/page-content/src/page-content.vue')['default']
+    PageContentV1: typeof import('./src/components/page-content/src/page-content-v1.vue')['default']
     PageSearch: typeof import('./src/components/page-search/src/page-search.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
