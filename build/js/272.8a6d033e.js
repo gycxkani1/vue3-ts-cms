@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue3_ts_cms"]=self["webpackChunkvue3_ts_cms"]||[]).push([[272],{89:function(n,s){s.Z=(n,s)=>{const t=n.__vccOpts||n;for(const[c,r]of s)t[c]=r;return t}},3272:function(n,s,t){t.r(s),t.d(s,{default:function(){return i}});var c=t(3396);const r={class:"dashboard"},u=(0,c._)("h2",null,"dashboard 商品统计",-1),e=[u];function o(n,s){return(0,c.wg)(),(0,c.iD)("div",r,e)}var a=t(89);const f={},d=(0,a.Z)(f,[["render",o]]);var i=d}}]);
+//# sourceMappingURL=272.8a6d033e.js.map

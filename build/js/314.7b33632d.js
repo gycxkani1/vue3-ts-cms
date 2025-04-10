@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue3_ts_cms"]=self["webpackChunkvue3_ts_cms"]||[]).push([[314],{89:function(n,t){t.Z=(n,t)=>{const u=n.__vccOpts||n;for(const[c,s]of t)u[c]=s;return u}},1314:function(n,t,u){u.r(t),u.d(t,{default:function(){return v}});var c=u(3396);const s={class:"menu"},e=(0,c._)("h2",null,"menu 菜单",-1),r=[e];function o(n,t){return(0,c.wg)(),(0,c.iD)("div",s,r)}var f=u(89);const a={},i=(0,f.Z)(a,[["render",o]]);var v=i}}]);
+//# sourceMappingURL=314.7b33632d.js.map
